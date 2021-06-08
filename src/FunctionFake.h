@@ -16,6 +16,10 @@ struct FunctionFake
     virtual void analogReference(uint8_t) = 0;
     virtual void analogWrite(uint8_t, int) = 0;
 
+    virtual double ledcSetup(uint8_t chan, double freq, uint8_t bit_num) = 0;
+    virtual void ledcAttachPin(uint8_t pin, uint8_t chan) = 0;
+    virtual void ledcWrite(uint8_t chan, uint32_t duty) = 0;
+
     virtual unsigned long millis(void) = 0;
     virtual unsigned long micros(void) = 0;
 

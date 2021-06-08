@@ -26,6 +26,21 @@ void analogWrite(uint8_t pin, int val)
     ArduinoFakeInstance(Function)->analogWrite(pin, val);
 }
 
+double ledcSetup(uint8_t chan, double freq, uint8_t bit_num)
+{
+    return ArduinoFakeInstance(Function)->ledcSetup(chan, freq, bit_num);
+}
+
+void ledcAttachPin(uint8_t pin, uint8_t chan)
+{
+    ArduinoFakeInstance(Function)->ledcAttachPin(pin, chan);
+}
+
+void ledcWrite(uint8_t chan, uint32_t duty)
+{
+    ArduinoFakeInstance(Function)->ledcWrite(chan, duty);
+}
+
 void analogReference(uint8_t mode)
 {
     ArduinoFakeInstance(Function)->analogReference(mode);
