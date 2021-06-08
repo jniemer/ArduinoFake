@@ -18,6 +18,7 @@ struct FunctionFake
 
     virtual double ledcSetup(uint8_t chan, double freq, uint8_t bit_num) = 0;
     virtual void ledcAttachPin(uint8_t pin, uint8_t chan) = 0;
+    virtual void ledcDetachPin(uint8_t pin) = 0;
     virtual void ledcWrite(uint8_t chan, uint32_t duty) = 0;
 
     virtual unsigned long millis(void) = 0;

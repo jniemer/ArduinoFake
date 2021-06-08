@@ -36,6 +36,11 @@ void ledcAttachPin(uint8_t pin, uint8_t chan)
     ArduinoFakeInstance(Function)->ledcAttachPin(pin, chan);
 }
 
+void ledcDetachPin(uint8_t pin)
+{
+    ArduinoFakeInstance(Function)->ledcDetachPin(pin);
+}
+
 void ledcWrite(uint8_t chan, uint32_t duty)
 {
     ArduinoFakeInstance(Function)->ledcWrite(chan, duty);
