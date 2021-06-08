@@ -17,6 +17,8 @@
 #include "SerialFake.h"
 #include "ClientFake.h"
 #include "PrintFake.h"
+#include "Wire.h"
+#include "SPI.h"
 
 #define ArduinoFake(mock) _ArduinoFakeGet##mock()
 
@@ -37,6 +39,8 @@
 #define _ArduinoFakeGetStream() _ArduinoFakeGetMock(Stream)
 #define _ArduinoFakeGetClient() _ArduinoFakeGetMock(Client)
 #define _ArduinoFakeGetPrint() _ArduinoFakeGetMock(Print)
+#define _ArduinoFakeGetSPIClass() _ArduinoFakeGetMock(SPIClass)
+#define _ArduinoFakeGetTwoWire() _ArduinoFakeGetMock(TwoWire)
 #define _ArduinoFakeGet() _ArduinoFakeGetMock(Function)
 
 #define _ArduinoFakeInstanceGetter1(mock) \
@@ -67,6 +71,8 @@ struct ArduinoFakeMocks
     fakeit::Mock<StreamFake> Stream;
     fakeit::Mock<ClientFake> Client;
     fakeit::Mock<PrintFake> Print;
+    fakeit::Mock<TwoWireFake> TwoWire;
+    fakeit::Mock<SPIClassFake> SPIClass;
 };
 
 struct ArduinoFakeInstances
@@ -76,6 +82,8 @@ struct ArduinoFakeInstances
     StreamFake* Stream;
     ClientFake* Client;
     PrintFake* Print;
+    TwoWireFake* TwoWire;
+    SPIClassFake* SPIClass;
 };
 
 class ArduinoFakeContext
@@ -90,11 +98,15 @@ class ArduinoFakeContext
         _ArduinoFakeInstanceGetter1(Serial)
         _ArduinoFakeInstanceGetter1(Client)
         _ArduinoFakeInstanceGetter1(Function)
+        _ArduinoFakeInstanceGetter1(TwoWire)
+        _ArduinoFakeInstanceGetter1(SPIClass)
 
         _ArduinoFakeInstanceGetter2(Print, Print)
         _ArduinoFakeInstanceGetter2(Client, Client)
         _ArduinoFakeInstanceGetter2(Stream, Stream)
         _ArduinoFakeInstanceGetter2(Serial, Serial_)
+        _ArduinoFakeInstanceGetter2(TwoWire, TwoWire)
+        _ArduinoFakeInstanceGetter2(SPIClass, SPIClass)
 
         ArduinoFakeContext()
         {
@@ -110,8 +122,13 @@ class ArduinoFakeContext
             this->Mocks->Serial.Reset();
             this->Mocks->Client.Reset();
             this->Mocks->Print.Reset();
+            this->Mocks->TwoWire.Reset();
+            this->Mocks->SPIClass.Reset();
 
             Mapping[&::Serial] = this->Serial();
+            Mapping[&::Wire] = this->TwoWire();
+            Mapping[&::SPI] = this->SPIClass();
+
         }
 };
 
