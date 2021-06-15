@@ -19,6 +19,8 @@
 #include "PrintFake.h"
 #include "Wire.h"
 #include "SPI.h"
+#include "HTTPClient.h"
+#include "AsyncMqttClient.h"
 
 #define ArduinoFake(mock) _ArduinoFakeGet##mock()
 
@@ -41,6 +43,8 @@
 #define _ArduinoFakeGetPrint() _ArduinoFakeGetMock(Print)
 #define _ArduinoFakeGetSPIClass() _ArduinoFakeGetMock(SPIClass)
 #define _ArduinoFakeGetTwoWire() _ArduinoFakeGetMock(TwoWire)
+#define _ArduinoFakeGetHTTPClient() _ArduinoFakeGetMock(HTTPClient)
+#define _ArduinoFakeGetAsyncMqttClient() _ArduinoFakeGetMock(AsyncMqttClient)
 #define _ArduinoFakeGet() _ArduinoFakeGetMock(Function)
 
 #define _ArduinoFakeInstanceGetter1(mock) \
@@ -73,6 +77,8 @@ struct ArduinoFakeMocks
     fakeit::Mock<PrintFake> Print;
     fakeit::Mock<TwoWireFake> TwoWire;
     fakeit::Mock<SPIClassFake> SPIClass;
+    fakeit::Mock<HTTPClientFake> HTTPClient;
+    fakeit::Mock<AsyncMqttClientFake> AsyncMqttClient;
 };
 
 struct ArduinoFakeInstances
@@ -84,6 +90,8 @@ struct ArduinoFakeInstances
     PrintFake* Print;
     TwoWireFake* TwoWire;
     SPIClassFake* SPIClass;
+    HTTPClientFake* HTTPClient;
+    AsyncMqttClientFake* AsyncMqttClient;
 };
 
 class ArduinoFakeContext
@@ -100,6 +108,8 @@ class ArduinoFakeContext
         _ArduinoFakeInstanceGetter1(Function)
         _ArduinoFakeInstanceGetter1(TwoWire)
         _ArduinoFakeInstanceGetter1(SPIClass)
+        _ArduinoFakeInstanceGetter1(HTTPClient)
+        _ArduinoFakeInstanceGetter1(AsyncMqttClient)
 
         _ArduinoFakeInstanceGetter2(Print, Print)
         _ArduinoFakeInstanceGetter2(Client, Client)
@@ -107,6 +117,8 @@ class ArduinoFakeContext
         _ArduinoFakeInstanceGetter2(Serial, Serial_)
         _ArduinoFakeInstanceGetter2(TwoWire, TwoWire)
         _ArduinoFakeInstanceGetter2(SPIClass, SPIClass)
+        _ArduinoFakeInstanceGetter2(HTTPClient, HTTPClient)
+        _ArduinoFakeInstanceGetter2(AsyncMqttClient, AsyncMqttClient)
 
         ArduinoFakeContext()
         {
