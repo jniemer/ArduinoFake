@@ -52,10 +52,10 @@ void yield(void);
 
 #define SERIAL  0x0
 #define DISPLAY 0x1
-
+/*
 #define LSBFIRST 0
 #define MSBFIRST 1
-
+*/
 #define CHANGE 1
 #define FALLING 2
 #define RISING 3
@@ -88,10 +88,9 @@ void yield(void);
 #undef abs
 #endif
 
-#ifndef __cplusplus
 #define min(a,b) ((a)<(b)?(a):(b))
 #define max(a,b) ((a)>(b)?(a):(b))
-#endif
+
 #define abs(x) ((x)>0?(x):-(x))
 #define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 #define round(x)     ((x)>=0?(long)((x)+0.5):(long)((x)-0.5))
