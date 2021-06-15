@@ -139,6 +139,10 @@ int digitalRead(uint8_t);
 int analogRead(uint8_t);
 void analogReference(uint8_t mode);
 void analogWrite(uint8_t, int);
+double ledcSetup(uint8_t chan, double freq, uint8_t bit_num);
+void ledcAttachPin(uint8_t pin, uint8_t chan);
+void ledcDetachPin(uint8_t pin);
+void ledcWrite(uint8_t chan, uint32_t duty);
 
 unsigned long millis(void);
 unsigned long micros(void);
