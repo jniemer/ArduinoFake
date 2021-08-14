@@ -1,0 +1,37 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "/Users/jannik/Documents/Software Development/Arduino/ArduinoFake/ArduinoFake/include",
+                "/Users/jannik/Documents/Software Development/Arduino/ArduinoFake/ArduinoFake/src",
+                "/Users/jannik/.platformio/packages/tool-unity",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/Users/jannik/Documents/Software Development/Arduino/ArduinoFake/ArduinoFake/include",
+                    "/Users/jannik/Documents/Software Development/Arduino/ArduinoFake/ArduinoFake/src",
+                    "/Users/jannik/.platformio/packages/tool-unity",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=50200",
+                ""
+            ],
+            "cppStandard": "c++11",
+            "compilerPath": "/usr/bin/gcc",
+            "compilerArgs": [
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}

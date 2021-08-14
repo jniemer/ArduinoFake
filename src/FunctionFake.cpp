@@ -26,26 +26,6 @@ void analogWrite(uint8_t pin, int val)
     ArduinoFakeInstance(Function)->analogWrite(pin, val);
 }
 
-double ledcSetup(uint8_t chan, double freq, uint8_t bit_num)
-{
-    return ArduinoFakeInstance(Function)->ledcSetup(chan, freq, bit_num);
-}
-
-void ledcAttachPin(uint8_t pin, uint8_t chan)
-{
-    ArduinoFakeInstance(Function)->ledcAttachPin(pin, chan);
-}
-
-void ledcDetachPin(uint8_t pin)
-{
-    ArduinoFakeInstance(Function)->ledcDetachPin(pin);
-}
-
-void ledcWrite(uint8_t chan, uint32_t duty)
-{
-    ArduinoFakeInstance(Function)->ledcWrite(chan, duty);
-}
-
 void analogReference(uint8_t mode)
 {
     ArduinoFakeInstance(Function)->analogReference(mode);
@@ -139,4 +119,96 @@ long map(long value, long fromLow, long fromHigh, long toLow, long toHigh)
 void yield()
 {
     ArduinoFakeInstance(Function)->yield();
+}
+
+
+// ESP functions
+
+double ledcSetup(uint8_t chan, double freq, uint8_t bit_num)
+{
+    return ArduinoFakeInstance(Function)->ledcSetup(chan, freq, bit_num);
+}
+
+void ledcAttachPin(uint8_t pin, uint8_t chan)
+{
+    ArduinoFakeInstance(Function)->ledcAttachPin(pin, chan);
+}
+
+void ledcDetachPin(uint8_t pin)
+{
+    ArduinoFakeInstance(Function)->ledcDetachPin(pin);
+}
+
+void ledcWrite(uint8_t chan, uint32_t duty)
+{
+    ArduinoFakeInstance(Function)->ledcWrite(chan, duty);
+}
+
+
+
+// ESP-IDF functions
+
+esp_mqtt_client_handle_t esp_mqtt_client_init(const esp_mqtt_client_config_t *config)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_client_init(config);
+}
+
+esp_err_t esp_mqtt_client_set_uri(esp_mqtt_client_handle_t client, const char *uri)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_client_set_uri(client, uri);
+}
+
+esp_err_t esp_mqtt_client_start(esp_mqtt_client_handle_t client)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_client_start(client);
+}
+
+esp_err_t esp_mqtt_client_reconnect(esp_mqtt_client_handle_t client)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_client_reconnect(client);
+}
+
+esp_err_t esp_mqtt_client_disconnect(esp_mqtt_client_handle_t client)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_client_disconnect(client);
+}
+
+esp_err_t esp_mqtt_client_stop(esp_mqtt_client_handle_t client)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_client_stop(client);
+}
+
+int esp_mqtt_client_subscribe(esp_mqtt_client_handle_t client, const char *topic, int qos)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_client_subscribe(client, topic, qos);
+}
+
+int esp_mqtt_client_unsubscribe(esp_mqtt_client_handle_t client, const char *topic)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_client_unsubscribe(client, topic);
+}
+
+int esp_mqtt_client_publish(esp_mqtt_client_handle_t client, const char *topic, const char *data, int len, int qos, int retain)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_client_publish(client, topic, data, len, qos, retain);
+}
+
+esp_err_t esp_mqtt_client_destroy(esp_mqtt_client_handle_t client)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_client_destroy(client);
+}
+
+esp_err_t esp_mqtt_set_config(esp_mqtt_client_handle_t client, const esp_mqtt_client_config_t *config)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_set_config(client, config);
+}
+
+esp_err_t esp_mqtt_client_register_event(esp_mqtt_client_handle_t client, esp_mqtt_event_id_t event, esp_event_handler_t event_handler, void* event_handler_arg)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_client_register_event(client, event, event_handler, event_handler_arg);
+}
+
+int esp_mqtt_client_get_outbox_size(esp_mqtt_client_handle_t client)
+{
+    return ArduinoFakeInstance(Function)->esp_mqtt_client_get_outbox_size(client);
 }

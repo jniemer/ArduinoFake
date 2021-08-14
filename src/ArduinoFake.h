@@ -11,6 +11,7 @@
 #include "fakeit/fakeit.hpp"
 
 #include "arduino/Arduino.h"
+#include "mqtt_client.h"
 
 #include "FunctionFake.h"
 #include "StreamFake.h"
@@ -19,8 +20,14 @@
 #include "PrintFake.h"
 #include "Wire.h"
 #include "SPI.h"
+#include "WiFi.h"
 #include "HTTPClient.h"
 #include "AsyncMqttClient.h"
+#include "WiFiClient.h"
+#include "Esp.h"
+#include "DNSServer.h"
+//#include "WiFiClientSecure.h"
+#include "WebServer.h"
 
 #define ArduinoFake(mock) _ArduinoFakeGet##mock()
 
@@ -43,8 +50,14 @@
 #define _ArduinoFakeGetPrint() _ArduinoFakeGetMock(Print)
 #define _ArduinoFakeGetSPIClass() _ArduinoFakeGetMock(SPIClass)
 #define _ArduinoFakeGetTwoWire() _ArduinoFakeGetMock(TwoWire)
+#define _ArduinoFakeGetEspClass() _ArduinoFakeGetMock(EspClass)
 #define _ArduinoFakeGetHTTPClient() _ArduinoFakeGetMock(HTTPClient)
 #define _ArduinoFakeGetAsyncMqttClient() _ArduinoFakeGetMock(AsyncMqttClient)
+#define _ArduinoFakeGetWiFiClient() _ArduinoFakeGetMock(WiFiClient)
+//#define _ArduinoFakeGetWiFiClientSecure() _ArduinoFakeGetMock(WiFiClientSecure)
+#define _ArduinoFakeGetWebServer() _ArduinoFakeGetMock(WebServer)
+#define _ArduinoFakeGetDNSServer() _ArduinoFakeGetMock(DNSServer)
+#define _ArduinoFakeGetWiFiClass() _ArduinoFakeGetMock(WiFiClass)
 #define _ArduinoFakeGet() _ArduinoFakeGetMock(Function)
 
 #define _ArduinoFakeInstanceGetter1(mock) \
@@ -77,8 +90,14 @@ struct ArduinoFakeMocks
     fakeit::Mock<PrintFake> Print;
     fakeit::Mock<TwoWireFake> TwoWire;
     fakeit::Mock<SPIClassFake> SPIClass;
+    fakeit::Mock<EspClassFake> EspClass;
     fakeit::Mock<HTTPClientFake> HTTPClient;
     fakeit::Mock<AsyncMqttClientFake> AsyncMqttClient;
+    fakeit::Mock<WiFiClientFake> WiFiClient;
+    //fakeit::Mock<WiFiClientSecureFake> WiFiClientSecure;
+    fakeit::Mock<WebServerFake> WebServer;
+    fakeit::Mock<DNSServerFake> DNSServer;
+    fakeit::Mock<WiFiClassFake> WiFiClass;
 };
 
 struct ArduinoFakeInstances
@@ -90,8 +109,14 @@ struct ArduinoFakeInstances
     PrintFake* Print;
     TwoWireFake* TwoWire;
     SPIClassFake* SPIClass;
+    EspClassFake* EspClass;
     HTTPClientFake* HTTPClient;
     AsyncMqttClientFake* AsyncMqttClient;
+    WiFiClientFake* WiFiClient;
+    //WiFiClientSecureFake* WiFiClientSecure;
+    WebServerFake* WebServer;
+    DNSServerFake* DNSServer;
+    WiFiClassFake* WiFiClass;
 };
 
 class ArduinoFakeContext
@@ -108,8 +133,14 @@ class ArduinoFakeContext
         _ArduinoFakeInstanceGetter1(Function)
         _ArduinoFakeInstanceGetter1(TwoWire)
         _ArduinoFakeInstanceGetter1(SPIClass)
+        _ArduinoFakeInstanceGetter1(EspClass)
         _ArduinoFakeInstanceGetter1(HTTPClient)
         _ArduinoFakeInstanceGetter1(AsyncMqttClient)
+        _ArduinoFakeInstanceGetter1(WiFiClient)
+        //_ArduinoFakeInstanceGetter1(WiFiClientSecure)
+        _ArduinoFakeInstanceGetter1(WebServer)
+        _ArduinoFakeInstanceGetter1(DNSServer)
+        _ArduinoFakeInstanceGetter1(WiFiClass)
 
         _ArduinoFakeInstanceGetter2(Print, Print)
         _ArduinoFakeInstanceGetter2(Client, Client)
@@ -117,8 +148,14 @@ class ArduinoFakeContext
         _ArduinoFakeInstanceGetter2(Serial, Serial_)
         _ArduinoFakeInstanceGetter2(TwoWire, TwoWire)
         _ArduinoFakeInstanceGetter2(SPIClass, SPIClass)
+        _ArduinoFakeInstanceGetter2(EspClass, EspClass)
         _ArduinoFakeInstanceGetter2(HTTPClient, HTTPClient)
         _ArduinoFakeInstanceGetter2(AsyncMqttClient, AsyncMqttClient)
+        _ArduinoFakeInstanceGetter2(WiFiClient, WiFiClient)
+        //_ArduinoFakeInstanceGetter2(WiFiClientSecure, WiFiClientSecure)
+        _ArduinoFakeInstanceGetter2(WebServer, WebServer)
+        _ArduinoFakeInstanceGetter2(DNSServer, DNSServer)
+        _ArduinoFakeInstanceGetter2(WiFiClass, WiFiClass)
 
         ArduinoFakeContext()
         {
@@ -136,10 +173,14 @@ class ArduinoFakeContext
             this->Mocks->Print.Reset();
             this->Mocks->TwoWire.Reset();
             this->Mocks->SPIClass.Reset();
+            this->Mocks->EspClass.Reset();
+            this->Mocks->WiFiClass.Reset();
 
             Mapping[&::Serial] = this->Serial();
             Mapping[&::Wire] = this->TwoWire();
             Mapping[&::SPI] = this->SPIClass();
+            Mapping[&::ESP] = this->EspClass();
+            Mapping[&::WiFi] = this->WiFiClass();
 
         }
 };

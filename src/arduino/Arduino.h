@@ -34,6 +34,11 @@
 extern "C"{
 #endif
 
+#define log_v(format, ...)
+#define log_d(format, ...)
+#define log_w(format, ...)
+#define log_e(format, ...)
+
 void yield(void);
 
 #define HIGH 0x1

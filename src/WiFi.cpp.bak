@@ -1,0 +1,453 @@
+#include "ArduinoFake.h"
+#include "WiFi.h"
+
+void WiFiClass::printDiag(Print& dest)    
+{
+    ArduinoFakeInstance(WiFiClass, this)->printDiag(dest);    
+}
+
+void WiFiClass::enableProv(bool status)    
+{
+    ArduinoFakeInstance(WiFiClass, this)->enableProv(status);
+}
+
+bool WiFiClass::isProvEnabled()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->isProvEnabled();
+}
+
+// from WiFiGeneric
+wifi_event_id_t WiFiClass::onEvent(WiFiEventCb cbEvent, system_event_id_t event)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->onEvent(cbEvent, event);
+}
+
+wifi_event_id_t WiFiClass::onEvent(WiFiEventFuncCb cbEvent, system_event_id_t event)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->onEvent(cbEvent, event);
+}
+
+wifi_event_id_t WiFiClass::onEvent(WiFiEventSysCb cbEvent, system_event_id_t event)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->onEvent(cbEvent, event);
+}
+
+wifi_event_id_t WiFiClass::onEvent(WiFiProvEventCb cbEvent, system_event_id_t event)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->onEvent(cbEvent, event);
+}
+
+void WiFiClass::removeEvent(WiFiEventCb cbEvent, system_event_id_t event)    
+{
+    ArduinoFakeInstance(WiFiClass, this)->onEvent(cbEvent, event);
+}
+
+void WiFiClass::removeEvent(WiFiEventSysCb cbEvent, system_event_id_t event)    
+{
+    ArduinoFakeInstance(WiFiClass, this)->removeEvent(cbEvent, event);
+}
+
+void WiFiClass::removeEvent(wifi_event_id_t id)    
+{
+    ArduinoFakeInstance(WiFiClass, this)->removeEvent(id);
+}
+
+int WiFiClass::getStatusBits()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->getStatusBits();
+}
+
+int WiFiClass::waitStatusBits(int bits, uint32_t timeout_ms)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->waitStatusBits(bits, timeout_ms);
+}
+
+int32_t WiFiClass::channel(void)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->channel();
+}
+
+void WiFiClass::persistent(bool persistent)    
+{
+    ArduinoFakeInstance(WiFiClass, this)->persistent(persistent);
+}
+
+void WiFiClass::enableLongRange(bool enable)    
+{
+    ArduinoFakeInstance(WiFiClass, this)->enableLongRange(enable);
+}
+
+bool WiFiClass::mode(wifi_mode_t mode)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->mode(mode);
+}
+
+wifi_mode_t WiFiClass::getMode()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->getMode();
+}
+
+bool WiFiClass::enableSTA(bool enable)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->enableSTA(enable);
+}
+
+bool WiFiClass::enableAP(bool enable)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->enableAP(enable);
+}
+
+bool WiFiClass::setSleep(bool enable)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->setSleep(enable);
+}
+
+/*bool WiFiClass::setSleep(wifi_ps_type_t mode)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->setSleep(mode);
+}*/
+
+bool WiFiClass::getSleep()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->getSleep();
+}
+
+bool WiFiClass::setTxPower(wifi_power_t power)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->setTxPower(power);
+}
+
+wifi_power_t WiFiClass::getTxPower()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->getTxPower();
+}
+
+/*esp_err_t WiFiClass::_eventCallback(void *arg, system_event_t *event, wifi_prov_event_t *prov_event)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->_eventCallback(arg, event, prov_event);
+}*/
+
+int WiFiClass::hostByName(const char *aHostname, IPAddress &aResult)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->hostByName(aHostname, aResult);
+}
+
+IPAddress WiFiClass::calculateNetworkID(IPAddress ip, IPAddress subnet)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->calculateNetworkID(ip,subnet);
+}
+
+IPAddress WiFiClass::calculateBroadcast(IPAddress ip, IPAddress subnet)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->calculateBroadcast(ip, subnet);
+}
+
+uint8_t WiFiClass::calculateSubnetCIDR(IPAddress subnetMask)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->calculateSubnetCIDR(subnetMask);
+}
+
+// from WiFiSTA
+wl_status_t WiFiClass::begin(const char* ssid, const char *passphrase, int32_t channel, const uint8_t* bssid, bool connect)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->begin(ssid, passphrase, channel, bssid, connect);
+}
+
+wl_status_t WiFiClass::begin(char* ssid, char *passphrase, int32_t channel, const uint8_t* bssid, bool connect)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->begin(ssid, passphrase, channel, bssid, connect);
+}
+
+wl_status_t WiFiClass::begin()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->begin();
+}
+
+bool WiFiClass::config(IPAddress local_ip, IPAddress gateway, IPAddress subnet, IPAddress dns1, IPAddress dns2)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->config(local_ip, gateway, subnet, dns1, dns2);
+}
+
+bool WiFiClass::reconnect()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->reconnect();
+}
+
+bool WiFiClass::disconnect(bool wifioff, bool eraseap)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->disconnect(wifioff, eraseap);
+}
+
+bool WiFiClass::isConnected()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->isConnected();
+}
+
+bool WiFiClass::setAutoConnect(bool autoConnect)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->setAutoConnect(autoConnect);
+}
+
+bool WiFiClass::getAutoConnect()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->getAutoConnect();
+}
+
+bool WiFiClass::setAutoReconnect(bool autoReconnect)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->setAutoReconnect(autoReconnect);
+}
+
+bool WiFiClass::getAutoReconnect()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->getAutoReconnect();
+}
+
+uint8_t WiFiClass::waitForConnectResult()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->waitForConnectResult();
+}
+
+IPAddress WiFiClass::localIP()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->localIP();
+}
+
+uint8_t * WiFiClass::macAddress(uint8_t* mac)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->macAddress(mac);
+}
+
+String WiFiClass::macAddress()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->macAddress();
+}
+
+IPAddress WiFiClass::subnetMask()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->subnetMask();
+}
+
+IPAddress WiFiClass::gatewayIP()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->gatewayIP();
+}
+
+IPAddress WiFiClass::dnsIP(uint8_t dns_no)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->dnsIP(dns_no);
+}
+
+IPAddress WiFiClass::broadcastIP()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->broadcastIP();
+}
+
+IPAddress WiFiClass::networkID()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->networkID();
+}
+
+uint8_t WiFiClass::subnetCIDR()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->subnetCIDR();
+}
+
+bool WiFiClass::enableIpV6()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->enableIpV6();
+}
+
+/*IPv6Address WiFiClass::localIPv6()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->localIPv6();
+}*/
+
+const char * WiFiClass::getHostname()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->getHostname();
+}
+
+bool WiFiClass::setHostname(const char * hostname)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->setHostname(hostname);
+}
+
+bool WiFiClass::hostname(const String& aHostname)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->hostname(aHostname);
+}
+
+wl_status_t WiFiClass::status()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->status();
+}
+
+String WiFiClass::SSID()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->SSID();
+}
+
+String WiFiClass::psk()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->psk();
+}
+
+uint8_t * WiFiClass::BSSID()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->BSSID();
+}
+
+String WiFiClass::BSSIDstr()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->BSSIDstr();
+}
+
+int8_t WiFiClass::RSSI()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->RSSI();
+}
+
+void WiFiClass::_setStatus(wl_status_t status)    
+{
+    ArduinoFakeInstance(WiFiClass, this)->_setStatus(status);
+}
+
+//from WiFiScan
+int16_t WiFiClass::scanNetworks(bool async, bool show_hidden, bool passive, uint32_t max_ms_per_chan, uint8_t channel)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->scanNetworks(async, show_hidden, passive, max_ms_per_chan, channel);
+}
+
+int16_t WiFiClass::scanComplete()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->scanComplete();
+}
+
+void WiFiClass::scanDelete()    
+{
+    ArduinoFakeInstance(WiFiClass, this)->scanDelete();
+}
+
+bool WiFiClass::getNetworkInfo(uint8_t networkItem, String &ssid, uint8_t &encryptionType, int32_t &RSSI, uint8_t* &BSSID, int32_t &channel)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->getNetworkInfo(networkItem, ssid, encryptionType, RSSI, BSSID, channel);
+}
+
+String WiFiClass::SSID(uint8_t networkItem)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->SSID(networkItem);
+}
+
+/*wifi_auth_mode_t WiFiClass::encryptionType(uint8_t networkItem)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->encryptionType(networkItem);
+}*/
+
+int32_t WiFiClass::RSSI(uint8_t networkItem)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->RSSI(networkItem);
+}
+
+uint8_t * WiFiClass::BSSID(uint8_t networkItem)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->BSSID(networkItem);
+}
+
+String WiFiClass::BSSIDstr(uint8_t networkItem)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->BSSIDstr(networkItem);
+}
+
+int32_t WiFiClass::channel(uint8_t networkItem)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->channel(networkItem);
+}
+
+void * WiFiClass::getScanInfoByIndex(int i)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->getScanInfoByIndex(i);
+} 
+
+void WiFiClass::_scanDone()    
+{
+    ArduinoFakeInstance(WiFiClass, this)->_scanDone();
+}
+
+//from WiFiAP
+bool WiFiClass::softAP(const char* ssid, const char* passphrase, int channel, int ssid_hidden, int max_connection)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAP(ssid, passphrase, channel, ssid_hidden, max_connection);
+}
+
+bool WiFiClass::softAPConfig(IPAddress local_ip, IPAddress gateway, IPAddress subnet)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPConfig(local_ip, gateway, subnet);
+}
+
+bool WiFiClass::softAPdisconnect(bool wifioff)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPdisconnect(wifioff);
+}
+
+uint8_t WiFiClass::softAPgetStationNum()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPgetStationNum();
+}
+
+IPAddress WiFiClass::softAPIP()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPIP();
+}
+
+IPAddress WiFiClass::softAPBroadcastIP()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPBroadcastIP();
+}
+
+IPAddress WiFiClass::softAPNetworkID()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPNetworkID();
+}
+
+uint8_t WiFiClass::softAPSubnetCIDR()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPSubnetCIDR();
+}
+
+bool WiFiClass::softAPenableIpV6()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPenableIpV6();
+}
+
+/*IPv6Address WiFiClass::softAPIPv6()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPIPv6();
+}*/
+
+const char * WiFiClass::softAPgetHostname()    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPgetHostname();
+}
+
+bool WiFiClass::softAPsetHostname(const char * hostname)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPsetHostname(hostname);
+}
+
+uint8_t* WiFiClass::softAPmacAddress(uint8_t* mac)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPmacAddress(mac);
+}
+
+String WiFiClass::softAPmacAddress(void)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPmacAddress();
+}
+
+String WiFiClass::softAPSSID(void)    
+{
+    return ArduinoFakeInstance(WiFiClass, this)->softAPSSID();
+}
+
+WiFiClass WiFi = WiFiClassFakeProxy(ArduinoFakeInstance(WiFiClass));

@@ -1,0 +1,98 @@
+#pragma once
+
+#include "Arduino.h"
+
+class WiFiClientSecure: public WiFiClient {
+ public:
+    virtual int connect(IPAddress ip, uint16_t port, const char *rootCABuff, const char *cli_cert, const char *cli_key);
+    virtual int connect(const char *host, uint16_t port, const char *rootCABuff, const char *cli_cert, const char *cli_key);
+    virtual int connect(IPAddress ip, uint16_t port, const char *pskIdent, const char *psKey);
+    virtual int connect(const char *host, uint16_t port, const char *pskIdent, const char *psKey);
+    virtual int lastError(char *buf, const size_t size);
+    virtual void setInsecure(); // Don't validate the chain, just accept whatever is given.  VERY INSECURE!
+    virtual void setPreSharedKey(const char *pskIdent, const char *psKey); // psKey in Hex
+    virtual void setCACert(const char *rootCA);
+    virtual void setCertificate(const char *client_ca);
+    virtual void setPrivateKey (const char *private_key);
+    virtual bool loadCACert(Stream& stream, size_t size);
+    virtual bool loadCertificate(Stream& stream, size_t size);
+    virtual bool loadPrivateKey(Stream& stream, size_t size);
+    virtual bool verify(const char* fingerprint, const char* domain_name);
+    virtual void setHandshakeTimeout(unsigned long handshake_timeout);
+    virtual int socket();
+
+    /*
+    virtual int connect(IPAddress ip, uint16_t port);
+    virtual int connect(IPAddress ip, uint16_t port, int32_t timeout);
+    virtual int connect(const char *host, uint16_t port);
+    virtual int connect(const char *host, uint16_t port, int32_t timeout);
+    virtual size_t write(uint8_t data);
+    virtual size_t write(const uint8_t *buf, size_t size);
+    virtual size_t write_P(PGM_P buf, size_t size);
+    virtual size_t write(Stream &stream);
+    virtual int available();
+    virtual int read();
+    virtual int read(uint8_t *buf, size_t size);
+    virtual int peek();
+    virtual void flush();
+    virtual void stop();
+    virtual uint8_t connected();
+
+    virtual int fd() const;
+
+    virtual int setSocketOption(int option, char* value, size_t len);
+    virtual int setOption(int option, int *value);
+    virtual int getOption(int option, int *value);
+    virtual int setTimeout(uint32_t seconds);
+    virtual int setNoDelay(bool nodelay);
+    virtual bool getNoDelay();
+
+    virtual IPAddress remoteIP();
+    virtual IPAddress remoteIP(int fd);
+    virtual uint16_t remotePort();
+    virtual uint16_t remotePort(int fd);
+    virtual IPAddress localIP();
+    virtual IPAddress localIP(int fd);
+    virtual uint16_t localPort();
+    virtual uint16_t localPort(int fd);
+    */
+};
+
+
+
+class WiFiClientSecureFake: public WiFiClientFake {
+ public:
+    virtual int connect(IPAddress ip, uint16_t port, const char *rootCABuff, const char *cli_cert, const char *cli_key) = 0;
+    virtual int connect(const char *host, uint16_t port, const char *rootCABuff, const char *cli_cert, const char *cli_key) = 0;
+    virtual int connect(IPAddress ip, uint16_t port, const char *pskIdent, const char *psKey) = 0;
+    virtual int connect(const char *host, uint16_t port, const char *pskIdent, const char *psKey) = 0;
+    virtual int lastError(char *buf, const size_t size) = 0;
+    virtual void setInsecure(); // Don't validate the chain, just accept whatever is given.  VERY INSECURE!
+    virtual void setPreSharedKey(const char *pskIdent, const char *psKey) = 0; // psKey in Hex
+    virtual void setCACert(const char *rootCA) = 0;
+    virtual void setCertificate(const char *client_ca) = 0;
+    virtual void setPrivateKey (const char *private_key) = 0;
+    virtual bool loadCACert(Stream& stream, size_t size) = 0;
+    virtual bool loadCertificate(Stream& stream, size_t size) = 0;
+    virtual bool loadPrivateKey(Stream& stream, size_t size) = 0;
+    virtual bool verify(const char* fingerprint, const char* domain_name) = 0;
+    virtual void setHandshakeTimeout(unsigned long handshake_timeout) = 0;
+    virtual int socket() = 0;
+};
+
+class WiFiClientSecureFakeProxy : public WiFiClientSecure
+{
+    private:
+        WiFiClientSecureFake* wcsFake;
+
+    public:
+        WiFiClientSecureFakeProxy(WiFiClientSecureFake* fake)
+        {
+            wcsFake = fake;
+        }
+
+        WiFiClientSecureFake* getWiFiClientSecureFake()
+        {
+            return wcsFake;
+        }
+};
